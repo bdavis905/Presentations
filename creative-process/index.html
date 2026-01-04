@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creative Process - Ads by Brad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: #0a0a0f;
+            color: #ffffff;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        /* Layout */
+        .presentation {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background: #111118;
+            border-right: 1px solid #222233;
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 48px;
+        }
+
+        .chapter-list {
+            list-style: none;
+            flex: 1;
+        }
+
+        .chapter-item {
+            padding: 12px 16px;
+            margin-bottom: 4px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .chapter-item:hover {
+            background: #1a1a24;
+            color: #ccc;
+        }
+
+        .chapter-item.active {
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .chapter-number {
+            display: inline-block;
+            width: 24px;
+            opacity: 0.6;
+        }
+
+        /* Slide Counter */
+        .slide-counter {
+            position: fixed;
+            top: 24px;
+            right: 32px;
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+            z-index: 100;
+        }
+
+        /* Main Content */
+        .main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            position: relative;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            max-width: 1000px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Typography */
+        .slide-title {
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .slide-subtitle {
+            font-size: 28px;
+            color: #888;
+            font-weight: 400;
+            max-width: 700px;
+        }
+
+        .slide-number-big {
+            font-size: 180px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 16px;
+        }
+
+        .slide-label {
+            font-size: 18px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 48px;
+        }
+
+        .highlight {
+            color: #818cf8;
+        }
+
+        .accent {
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Visual Elements */
+        .icon-large {
+            font-size: 80px;
+            margin-bottom: 32px;
+        }
+
+        .stat-row {
+            display: flex;
+            gap: 80px;
+            margin-top: 48px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 72px;
+            font-weight: 700;
+            color: #818cf8;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: #666;
+            margin-top: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Loop Diagram */
+        .loop-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+            margin: 0 auto;
+        }
+
+        .loop-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid #222;
+            border-radius: 50%;
+        }
+
+        .loop-arrow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 3px solid transparent;
+            border-top-color: #7c3aed;
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .loop-step {
+            position: absolute;
+            background: #1a1a24;
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 16px 24px;
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .loop-step:hover {
+            border-color: #7c3aed;
+            transform: scale(1.05);
+        }
+
+        .loop-step.top { top: -20px; left: 50%; transform: translateX(-50%); }
+        .loop-step.right { right: -40px; top: 50%; transform: translateY(-50%); }
+        .loop-step.bottom { bottom: -20px; left: 50%; transform: translateX(-50%); }
+        .loop-step.left { left: -40px; top: 50%; transform: translateY(-50%); }
+        .loop-step.top-right { top: 60px; right: 20px; }
+        .loop-step.bottom-right { bottom: 60px; right: 20px; }
+        .loop-step.bottom-left { bottom: 60px; left: 20px; }
+        .loop-step.top-left { top: 60px; left: 20px; }
+
+        .loop-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .loop-center-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .loop-center-sub {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+        }
+
+        /* Process Flow */
+        .flow-container {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-top: 48px;
+        }
+
+        .flow-step {
+            background: #1a1a24;
+            border: 2px solid #333;
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            min-width: 160px;
+            transition: all 0.3s ease;
+        }
+
+        .flow-step:hover {
+            border-color: #7c3aed;
+            transform: translateY(-4px);
+        }
+
+        .flow-step-icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .flow-step-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .flow-step-sub {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .flow-arrow {
+            font-size: 24px;
+            color: #444;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #111118;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 32px;
+            text-align: left;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-top: 32px;
+            max-width: 700px;
+        }
+
+        .code-comment {
+            color: #666;
+        }
+
+        .code-key {
+            color: #818cf8;
+        }
+
+        .code-value {
+            color: #34d399;
+        }
+
+        /* Tool Stack */
+        .tool-stack {
+            display: flex;
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .tool-card {
+            background: #1a1a24;
+            border: 2px solid #333;
+            border-radius: 16px;
+            padding: 32px;
+            text-align: center;
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            border-color: #7c3aed;
+        }
+
+        .tool-card.primary {
+            border-color: #7c3aed;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
+        }
+
+        .tool-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .tool-name {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .tool-desc {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* Comparison */
+        .comparison {
+            display: flex;
+            gap: 48px;
+            margin-top: 48px;
+        }
+
+        .compare-col {
+            flex: 1;
+            padding: 32px;
+            border-radius: 16px;
+        }
+
+        .compare-col.old {
+            background: rgba(239, 68, 68, 0.1);
+            border: 2px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .compare-col.new {
+            background: rgba(34, 197, 94, 0.1);
+            border: 2px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .compare-header {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            opacity: 0.7;
+        }
+
+        .compare-col.old .compare-header { color: #ef4444; }
+        .compare-col.new .compare-header { color: #22c55e; }
+
+        .compare-item {
+            font-size: 18px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .compare-icon {
+            font-size: 20px;
+        }
+
+        /* Footer nav hint */
+        .nav-hint {
+            position: fixed;
+            bottom: 24px;
+            right: 32px;
+            font-size: 12px;
+            color: #444;
+        }
+
+        .nav-hint kbd {
+            background: #222;
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin: 0 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">Ads by Brad</div>
+            <ul class="chapter-list">
+                <li class="chapter-item active" data-chapter="intro">
+                    <span class="chapter-number">01</span> The Problem
+                </li>
+                <li class="chapter-item" data-chapter="what">
+                    <span class="chapter-number">02</span> What I Do
+                </li>
+                <li class="chapter-item" data-chapter="why">
+                    <span class="chapter-number">03</span> Why It Works
+                </li>
+                <li class="chapter-item" data-chapter="how">
+                    <span class="chapter-number">04</span> How It Works
+                </li>
+                <li class="chapter-item" data-chapter="tools">
+                    <span class="chapter-number">05</span> The Stack
+                </li>
+                <li class="chapter-item" data-chapter="loop">
+                    <span class="chapter-number">06</span> The Loop
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Slide Counter -->
+        <div class="slide-counter">
+            <span id="current-slide">1</span>/<span id="total-slides">18</span>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main">
+
+            <!-- CHAPTER 1: THE PROBLEM -->
+            <div class="slide active" data-chapter="intro">
+                <div class="slide-title">Finding winners<br>is a <span class="highlight">volume game</span></div>
+                <div class="slide-subtitle">The old way of running ads doesn't work anymore</div>
+            </div>
+
+            <div class="slide" data-chapter="intro">
+                <div class="slide-label">The Reality</div>
+                <div class="slide-title">Creative <span class="accent">is</span> the targeting</div>
+                <div class="slide-subtitle">Algorithms decide who sees your ad based on the creative itself</div>
+            </div>
+
+            <div class="slide" data-chapter="intro">
+                <div class="stat-row">
+                    <div class="stat">
+                        <div class="stat-number">1-2%</div>
+                        <div class="stat-label">of ads become winners</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">concepts to find one</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" data-chapter="intro">
+                <div class="slide-title">Most teams can't<br>move fast enough</div>
+                <div class="comparison">
+                    <div class="compare-col old">
+                        <div class="compare-header">Traditional Agency</div>
+                        <div class="compare-item"><span class="compare-icon">-</span> 2-4 ads per week</div>
+                        <div class="compare-item"><span class="compare-icon">-</span> Multiple handoffs</div>
+                        <div class="compare-item"><span class="compare-icon">-</span> Slow feedback loops</div>
+                        <div class="compare-item"><span class="compare-icon">-</span> Strategy dilution</div>
+                    </div>
+                    <div class="compare-col new">
+                        <div class="compare-header">What's Needed</div>
+                        <div class="compare-item"><span class="compare-icon">+</span> High volume output</div>
+                        <div class="compare-item"><span class="compare-icon">+</span> Zero handoffs</div>
+                        <div class="compare-item"><span class="compare-icon">+</span> Rapid iteration</div>
+                        <div class="compare-item"><span class="compare-icon">+</span> Direct learning</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHAPTER 2: WHAT I DO -->
+            <div class="slide" data-chapter="what">
+                <div class="slide-label">What I Do</div>
+                <div class="slide-title">One strategist.<br><span class="accent">Full creative loop.</span></div>
+                <div class="slide-subtitle">Strategy, copy, design, testing, learning, scaling — no handoffs</div>
+            </div>
+
+            <div class="slide" data-chapter="what">
+                <div class="flow-container">
+                    <div class="flow-step">
+                        <div class="flow-step-icon">💡</div>
+                        <div class="flow-step-title">Strategy</div>
+                        <div class="flow-step-sub">Concepts & Angles</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">✍️</div>
+                        <div class="flow-step-title">Copy</div>
+                        <div class="flow-step-sub">Hooks & Scripts</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">🎨</div>
+                        <div class="flow-step-title">Design</div>
+                        <div class="flow-step-sub">Images & Video</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">📊</div>
+                        <div class="flow-step-title">Test</div>
+                        <div class="flow-step-sub">Launch & Learn</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" data-chapter="what">
+                <div class="slide-title">Built for <span class="highlight">velocity</span></div>
+                <div class="stat-row">
+                    <div class="stat">
+                        <div class="stat-number">10x</div>
+                        <div class="stat-label">more concepts tested</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">14-21</div>
+                        <div class="stat-label">days to first winners</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHAPTER 3: WHY IT WORKS -->
+            <div class="slide" data-chapter="why">
+                <div class="slide-label">Why It Works</div>
+                <div class="slide-title">AI + Systems +<br><span class="accent">Strategic Thinking</span></div>
+            </div>
+
+            <div class="slide" data-chapter="why">
+                <div class="slide-number-big">1</div>
+                <div class="slide-title">AI handles production</div>
+                <div class="slide-subtitle">Copy, images, variations — generated in minutes, not days</div>
+            </div>
+
+            <div class="slide" data-chapter="why">
+                <div class="slide-number-big">2</div>
+                <div class="slide-title">Systems capture knowledge</div>
+                <div class="slide-subtitle">Every test is tracked. Every winner is decoded. Nothing gets lost.</div>
+            </div>
+
+            <div class="slide" data-chapter="why">
+                <div class="slide-number-big">3</div>
+                <div class="slide-title">Strategy stays human</div>
+                <div class="slide-subtitle">I decide what to test. AI helps me test more of it, faster.</div>
+            </div>
+
+            <!-- CHAPTER 4: HOW IT WORKS -->
+            <div class="slide" data-chapter="how">
+                <div class="slide-label">How It Works</div>
+                <div class="slide-title">The <span class="accent">C.A.S.H.</span> System</div>
+                <div class="slide-subtitle">Concepts • Angles • Styles • Hooks</div>
+            </div>
+
+            <div class="slide" data-chapter="how">
+                <div class="code-block">
+                    <span class="code-comment">// Every ad is trackable</span><br><br>
+                    <span class="code-key">SEG01</span>-<span class="code-key">C024</span>-<span class="code-key">A01</span>-<span class="code-key">H03</span>_VID<br><br>
+                    <span class="code-comment">Segment</span> → <span class="code-value">Scaling Coaches</span><br>
+                    <span class="code-comment">Concept</span> → <span class="code-value">Creative Velocity</span><br>
+                    <span class="code-comment">Angle</span> → <span class="code-value">Story</span><br>
+                    <span class="code-comment">Hook</span> → <span class="code-value">#3 of 5</span>
+                </div>
+            </div>
+
+            <div class="slide" data-chapter="how">
+                <div class="slide-title">When something wins,<br>I know <span class="highlight">exactly why</span></div>
+                <div class="slide-subtitle">Same concept, different angle. Same hook, different image.<br>Systematic scaling, not guessing.</div>
+            </div>
+
+            <!-- CHAPTER 5: THE STACK -->
+            <div class="slide" data-chapter="tools">
+                <div class="slide-label">The Stack</div>
+                <div class="slide-title">Custom tools.<br><span class="accent">Unfair advantage.</span></div>
+            </div>
+
+            <div class="slide" data-chapter="tools">
+                <div class="tool-stack">
+                    <div class="tool-card primary">
+                        <div class="tool-icon">⚡</div>
+                        <div class="tool-name">Adzara</div>
+                        <div class="tool-desc">Proprietary platform for image generation, publishing, and performance tracking</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">🤖</div>
+                        <div class="tool-name">Claude Code</div>
+                        <div class="tool-desc">AI-powered copywriting with custom skills and voice profiles</div>
+                    </div>
+                    <div class="tool-card">
+                        <div class="tool-icon">📁</div>
+                        <div class="tool-name">Workspaces</div>
+                        <div class="tool-desc">Client-specific context, voice DNA, and creative history</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" data-chapter="tools">
+                <div class="slide-title">From idea to<br><span class="highlight">live on Facebook</span></div>
+                <div class="flow-container">
+                    <div class="flow-step">
+                        <div class="flow-step-icon">💭</div>
+                        <div class="flow-step-title">Brief</div>
+                        <div class="flow-step-sub">Claude Code</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">✍️</div>
+                        <div class="flow-step-title">Copy</div>
+                        <div class="flow-step-sub">Claude Code</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">🖼️</div>
+                        <div class="flow-step-title">Images</div>
+                        <div class="flow-step-sub">Adzara</div>
+                    </div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon">🚀</div>
+                        <div class="flow-step-title">Publish</div>
+                        <div class="flow-step-sub">Adzara → FB</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CHAPTER 6: THE LOOP -->
+            <div class="slide" data-chapter="loop">
+                <div class="slide-label">The Loop</div>
+                <div class="slide-title">Continuous<br><span class="accent">creative intelligence</span></div>
+            </div>
+
+            <div class="slide" data-chapter="loop">
+                <div class="loop-container">
+                    <div class="loop-circle"></div>
+                    <div class="loop-arrow"></div>
+                    <div class="loop-step top">💡 Ideate</div>
+                    <div class="loop-step top-right">✍️ Create</div>
+                    <div class="loop-step right">🚀 Publish</div>
+                    <div class="loop-step bottom-right">📊 Measure</div>
+                    <div class="loop-step bottom">🔍 Analyze</div>
+                    <div class="loop-step bottom-left">🎯 Learn</div>
+                    <div class="loop-step left">🔄 Iterate</div>
+                    <div class="loop-step top-left">📈 Scale</div>
+                    <div class="loop-center">
+                        <div class="loop-center-text">Winners</div>
+                        <div class="loop-center-sub">faster</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" data-chapter="loop">
+                <div class="slide-title">Every test makes<br>the next one <span class="highlight">smarter</span></div>
+                <div class="slide-subtitle">Performance data flows back into creative decisions.<br>The system learns what works for your audience.</div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Navigation Hint -->
+    <div class="nav-hint">
+        <kbd>←</kbd> <kbd>→</kbd> to navigate
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const chapters = document.querySelectorAll('.chapter-item');
+        const currentSlideEl = document.getElementById('current-slide');
+        const totalSlidesEl = document.getElementById('total-slides');
+
+        let currentSlide = 0;
+        totalSlidesEl.textContent = slides.length;
+
+        function showSlide(index) {
+            if (index < 0) index = 0;
+            if (index >= slides.length) index = slides.length - 1;
+
+            slides.forEach(s => s.classList.remove('active'));
+            slides[index].classList.add('active');
+            currentSlide = index;
+            currentSlideEl.textContent = index + 1;
+
+            // Update chapter highlighting
+            const currentChapter = slides[index].dataset.chapter;
+            chapters.forEach(c => {
+                c.classList.remove('active');
+                if (c.dataset.chapter === currentChapter) {
+                    c.classList.add('active');
+                }
+            });
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                showSlide(currentSlide + 1);
+            } else if (e.key === 'ArrowLeft') {
+                showSlide(currentSlide - 1);
+            }
+        });
+
+        // Chapter click navigation
+        chapters.forEach(chapter => {
+            chapter.addEventListener('click', () => {
+                const targetChapter = chapter.dataset.chapter;
+                const targetIndex = Array.from(slides).findIndex(
+                    s => s.dataset.chapter === targetChapter
+                );
+                if (targetIndex !== -1) {
+                    showSlide(targetIndex);
+                }
+            });
+        });
+
+        // Touch/swipe support
+        let touchStartX = 0;
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+        document.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) showSlide(currentSlide + 1);
+                else showSlide(currentSlide - 1);
+            }
+        });
+    </script>
+</body>
+</html>
