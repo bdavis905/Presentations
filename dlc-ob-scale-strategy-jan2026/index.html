@@ -808,29 +808,109 @@
             border: 2px solid #4ade80;
             border-radius: 12px;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
         .image-ad-card img {
             width: 100%;
-            height: 200px;
-            object-fit: cover;
+            height: auto;
             display: block;
         }
 
         .image-ad-info {
-            padding: 16px;
+            padding: 12px 16px;
+            background: #12121a;
         }
 
         .image-ad-title {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             color: #ffffff;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .image-ad-desc {
-            font-size: 13px;
+            font-size: 12px;
             color: #8b8b9b;
+        }
+
+        /* Full video showcase */
+        .video-showcase {
+            display: flex;
+            gap: 32px;
+            margin-top: 24px;
+        }
+
+        .video-showcase-player {
+            flex: 0 0 320px;
+        }
+
+        .video-showcase-player video {
+            width: 320px;
+            height: auto;
+            border-radius: 12px;
+            border: 2px solid #4ade80;
+            background: #000;
+        }
+
+        .video-showcase-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .video-meta {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .video-meta-item {
+            text-align: center;
+        }
+
+        .video-meta-number {
+            font-size: 28px;
+            font-weight: 700;
+            color: #4ade80;
+        }
+
+        .video-meta-label {
+            font-size: 11px;
+            color: #8b8b9b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .video-transcript {
+            background: #12121a;
+            border: 1px solid #2a2a3a;
+            border-radius: 8px;
+            padding: 16px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .video-transcript-label {
+            font-size: 11px;
+            color: #6b6b7b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .video-transcript-text {
+            font-size: 13px;
+            color: #c8c8d8;
+            line-height: 1.6;
+        }
+
+        .video-controls-hint {
+            font-size: 12px;
+            color: #6b6b7b;
+            margin-top: 8px;
         }
 
         /* Hook with video */
@@ -911,7 +991,7 @@
             </div>
         </nav>
 
-        <div class="slide-counter">1 / 25</div>
+        <div class="slide-counter">1 / 27</div>
 
         <main class="main">
             <!-- SLIDE 1: Title -->
@@ -1041,52 +1121,96 @@
                 </table>
             </div>
 
-            <!-- SLIDE 6: Video Winners Visual -->
+            <!-- SLIDE 6: Top Video - V1H8 -->
             <div class="slide" data-chapter="winners">
-                <div class="slide-title">Winning Video Ads</div>
-                <div class="video-thumb-grid">
-                    <div class="video-thumb winner">
-                        <span class="winner-badge">#2</span>
-                        <video muted loop>
+                <div class="slide-title" style="font-size: 28px;">#2 Winner: <span class="highlight">V1H8</span> — "15-20 Years Left"</div>
+                <div class="video-showcase">
+                    <div class="video-showcase-player">
+                        <video controls preload="metadata">
                             <source src="https://xwwaigxlmgwgfhhnorfo.supabase.co/storage/v1/object/public/videos/5dd982c7-d457-4e6f-ab74-f1904c0ffa9d/b7e078d1-3ae3-4252-837c-f5136ef7e137/videos/V1H8/1x1/FB2510%20V1H8%201x1.mp4" type="video/mp4">
                         </video>
-                        <div class="video-thumb-info">
-                            <div class="video-thumb-code">V1H8</div>
-                            <div class="video-thumb-stat">13 purchases</div>
-                        </div>
+                        <div class="video-controls-hint">Click to play with sound</div>
                     </div>
-                    <div class="video-thumb winner">
-                        <span class="winner-badge">#3</span>
-                        <video muted loop>
-                            <source src="https://xwwaigxlmgwgfhhnorfo.supabase.co/storage/v1/object/public/videos/5dd982c7-d457-4e6f-ab74-f1904c0ffa9d/b7e078d1-3ae3-4252-837c-f5136ef7e137/videos/V1H1/1x1/FB2510%20V1H1%201x1.mp4" type="video/mp4">
-                        </video>
-                        <div class="video-thumb-info">
-                            <div class="video-thumb-code">V1H1</div>
-                            <div class="video-thumb-stat">12 purchases</div>
+                    <div class="video-showcase-content">
+                        <div class="video-meta">
+                            <div class="video-meta-item">
+                                <div class="video-meta-number">13</div>
+                                <div class="video-meta-label">Purchases</div>
+                            </div>
+                            <div class="video-meta-item">
+                                <div class="video-meta-number">38%</div>
+                                <div class="video-meta-label">of Video Sales</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="video-thumb winner">
-                        <span class="winner-badge">#4</span>
-                        <video muted loop>
-                            <source src="https://xwwaigxlmgwgfhhnorfo.supabase.co/storage/v1/object/public/videos/5dd982c7-d457-4e6f-ab74-f1904c0ffa9d/b7e078d1-3ae3-4252-837c-f5136ef7e137/videos/V3H9/1x1/FB2510%20V3H9%201x1.mp4" type="video/mp4">
-                        </video>
-                        <div class="video-thumb-info">
-                            <div class="video-thumb-code">V3H9</div>
-                            <div class="video-thumb-stat">6 purchases</div>
-                        </div>
-                    </div>
-                    <div class="video-thumb winner">
-                        <span class="winner-badge">#5</span>
-                        <video muted loop>
-                            <source src="https://xwwaigxlmgwgfhhnorfo.supabase.co/storage/v1/object/public/videos/5dd982c7-d457-4e6f-ab74-f1904c0ffa9d/b7e078d1-3ae3-4252-837c-f5136ef7e137/videos/V1H4/1x1/FB2510%20V1H4%201x1.mp4" type="video/mp4">
-                        </video>
-                        <div class="video-thumb-info">
-                            <div class="video-thumb-code">V1H4</div>
-                            <div class="video-thumb-stat">5 purchases</div>
+                        <div class="video-transcript">
+                            <div class="video-transcript-label">Transcript</div>
+                            <div class="video-transcript-text">"You've got 15 to 20 good working years left and you are spending them making someone else wealthy. There's a business that most people never hear about that doesn't require selling, recruiting, or quitting your job. It involves helping families recover money the government holds after foreclosures. Money they don't even know exists. When you help them reclaim what's rightfully theirs, you earn a legal finder's fee. No employees, no inventory, and no office required. You can build this quietly on your own terms while you're still employed. It's not about getting rich quick. It's about building real control over your financial future by doing work that actually helps people..."</div>
                         </div>
                     </div>
                 </div>
-                <div class="small-text">Hover over videos to preview</div>
+            </div>
+
+            <!-- SLIDE 6b: Video V1H1 -->
+            <div class="slide" data-chapter="winners">
+                <div class="slide-title" style="font-size: 28px;">#3 Winner: <span class="highlight">V1H1</span> — "Actually Helps People"</div>
+                <div class="video-showcase">
+                    <div class="video-showcase-player">
+                        <video controls preload="metadata">
+                            <source src="https://xwwaigxlmgwgfhhnorfo.supabase.co/storage/v1/object/public/videos/5dd982c7-d457-4e6f-ab74-f1904c0ffa9d/b7e078d1-3ae3-4252-837c-f5136ef7e137/videos/V1H1/1x1/FB2510%20V1H1%201x1.mp4" type="video/mp4">
+                        </video>
+                        <div class="video-controls-hint">Click to play with sound</div>
+                    </div>
+                    <div class="video-showcase-content">
+                        <div class="video-meta">
+                            <div class="video-meta-item">
+                                <div class="video-meta-number">12</div>
+                                <div class="video-meta-label">Purchases</div>
+                            </div>
+                            <div class="video-meta-item">
+                                <div class="video-meta-number">24%</div>
+                                <div class="video-meta-label">of Video Sales</div>
+                            </div>
+                        </div>
+                        <div class="video-transcript">
+                            <div class="video-transcript-label">Hook</div>
+                            <div class="video-transcript-text">"What if you could build a business around helping people and get paid well for it?"</div>
+                        </div>
+                        <div class="hook-why" style="margin-top: 12px; font-size: 14px; color: #8b8b9b;">
+                            <strong style="color: #4ade80;">Why it works:</strong> Qualifies Whale-Shark hybrids immediately. Filters out get-rich-quick seekers.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SLIDE 6c: Video V3H9 & V1H4 Summary -->
+            <div class="slide" data-chapter="winners">
+                <div class="slide-title" style="font-size: 28px;">Other Winning Videos</div>
+                <div style="display: flex; gap: 24px; margin-top: 24px;">
+                    <div style="flex: 1; background: #12121a; border-radius: 12px; padding: 20px; border: 1px solid #2a2a3a;">
+                        <div style="display: flex; gap: 16px; align-items: flex-start;">
+                            <video controls preload="metadata" style="width: 160px; border-radius: 8px;">
+                                <source src="https://xwwaigxlmgwgfhhnorfo.supabase.co/storage/v1/object/public/videos/5dd982c7-d457-4e6f-ab74-f1904c0ffa9d/b7e078d1-3ae3-4252-837c-f5136ef7e137/videos/V3H9/1x1/FB2510%20V3H9%201x1.mp4" type="video/mp4">
+                            </video>
+                            <div>
+                                <div style="font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 4px;">#4: V3H9</div>
+                                <div style="font-size: 24px; font-weight: 700; color: #4ade80; margin-bottom: 8px;">6 purchases</div>
+                                <div style="font-size: 13px; color: #8b8b9b; line-height: 1.5;">"15 years to build something meaningful"</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex: 1; background: #12121a; border-radius: 12px; padding: 20px; border: 1px solid #2a2a3a;">
+                        <div style="display: flex; gap: 16px; align-items: flex-start;">
+                            <video controls preload="metadata" style="width: 160px; border-radius: 8px;">
+                                <source src="https://xwwaigxlmgwgfhhnorfo.supabase.co/storage/v1/object/public/videos/5dd982c7-d457-4e6f-ab74-f1904c0ffa9d/b7e078d1-3ae3-4252-837c-f5136ef7e137/videos/V1H4/1x1/FB2510%20V1H4%201x1.mp4" type="video/mp4">
+                            </video>
+                            <div>
+                                <div style="font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 4px;">#5: V1H4</div>
+                                <div style="font-size: 24px; font-weight: 700; color: #4ade80; margin-bottom: 8px;">5 purchases</div>
+                                <div style="font-size: 13px; color: #8b8b9b; line-height: 1.5;">"Financial advisor is wrong about risk"</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- SLIDE 7: Winning Image Ad Title -->
