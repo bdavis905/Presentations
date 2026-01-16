@@ -45,13 +45,20 @@
             padding-left: 12px;
         }
 
+        .chapter-group {
+            margin-bottom: 4px;
+        }
+
         .chapter {
-            padding: 12px 16px;
+            padding: 10px 16px;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s ease;
             font-size: 14px;
             color: #8b8b9b;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         .chapter:hover {
@@ -65,6 +72,11 @@
             font-weight: 500;
         }
 
+        .chapter-left {
+            display: flex;
+            align-items: center;
+        }
+
         .chapter-number {
             display: inline-block;
             width: 24px;
@@ -75,10 +87,55 @@
             line-height: 24px;
             font-size: 12px;
             margin-right: 12px;
+            flex-shrink: 0;
         }
 
         .chapter.active .chapter-number {
             background: rgba(74, 222, 128, 0.2);
+        }
+
+        .chapter-expand {
+            font-size: 10px;
+            color: #6b6b7b;
+            transition: transform 0.2s ease;
+        }
+
+        .chapter-group.expanded .chapter-expand {
+            transform: rotate(180deg);
+        }
+
+        /* Submenu styles */
+        .chapter-submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            margin-left: 20px;
+            border-left: 1px solid #2a2a3a;
+        }
+
+        .chapter-group.expanded .chapter-submenu {
+            max-height: 1000px;
+        }
+
+        .subslide {
+            padding: 8px 16px;
+            font-size: 12px;
+            color: #6b6b7b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .subslide:hover {
+            color: #c8c8d8;
+            background: rgba(255,255,255,0.05);
+        }
+
+        .subslide.active {
+            color: #4ade80;
+            background: rgba(74, 222, 128, 0.1);
         }
 
         /* Slide Counter */
@@ -1010,29 +1067,116 @@
     <div class="presentation">
         <nav class="sidebar">
             <div class="sidebar-title">Chapters</div>
-            <div class="chapter active" data-chapter="overview">
-                <span class="chapter-number">1</span>Overview
+
+            <!-- 1. Overview -->
+            <div class="chapter-group expanded" data-chapter="overview">
+                <div class="chapter active" data-chapter="overview">
+                    <span class="chapter-left"><span class="chapter-number">1</span>Overview</span>
+                    <span class="chapter-expand">▼</span>
+                </div>
+                <div class="chapter-submenu">
+                    <div class="subslide active" data-slide="0">Title</div>
+                </div>
             </div>
-            <div class="chapter" data-chapter="results">
-                <span class="chapter-number">2</span>Results
+
+            <!-- 2. Results -->
+            <div class="chapter-group" data-chapter="results">
+                <div class="chapter" data-chapter="results">
+                    <span class="chapter-left"><span class="chapter-number">2</span>Results</span>
+                    <span class="chapter-expand">▼</span>
+                </div>
+                <div class="chapter-submenu">
+                    <div class="subslide" data-slide="1">Three Creative Concepts</div>
+                </div>
             </div>
-            <div class="chapter" data-chapter="winners">
-                <span class="chapter-number">3</span>Winning Ads
+
+            <!-- 3. Winning Ads -->
+            <div class="chapter-group" data-chapter="winners">
+                <div class="chapter" data-chapter="winners">
+                    <span class="chapter-left"><span class="chapter-number">3</span>Winning Ads</span>
+                    <span class="chapter-expand">▼</span>
+                </div>
+                <div class="chapter-submenu">
+                    <div class="subslide" data-slide="2">Top Performing Ads</div>
+                    <div class="subslide" data-slide="3">V1H8 — 15-20 Years</div>
+                    <div class="subslide" data-slide="4">V1H1 — Helps People</div>
+                    <div class="subslide" data-slide="5">V3H9 — Meaningful</div>
+                    <div class="subslide" data-slide="6">V1H4 — Financial Advisor</div>
+                    <div class="subslide" data-slide="7">Top Image Ad</div>
+                    <div class="subslide" data-slide="8">Winning Image Set</div>
+                    <div class="subslide" data-slide="9">Copy That Converts</div>
+                </div>
             </div>
-            <div class="chapter" data-chapter="hooks">
-                <span class="chapter-number">4</span>Hook Patterns
+
+            <!-- 4. Hook Patterns -->
+            <div class="chapter-group" data-chapter="hooks">
+                <div class="chapter" data-chapter="hooks">
+                    <span class="chapter-left"><span class="chapter-number">4</span>Hook Patterns</span>
+                    <span class="chapter-expand">▼</span>
+                </div>
+                <div class="chapter-submenu">
+                    <div class="subslide" data-slide="10">Winning Hook Patterns</div>
+                    <div class="subslide" data-slide="11">Hook Patterns 2 & 3</div>
+                    <div class="subslide" data-slide="12">Primary Text</div>
+                </div>
             </div>
-            <div class="chapter" data-chapter="themes">
-                <span class="chapter-number">5</span>Copy Themes
+
+            <!-- 5. Copy Themes -->
+            <div class="chapter-group" data-chapter="themes">
+                <div class="chapter" data-chapter="themes">
+                    <span class="chapter-left"><span class="chapter-number">5</span>Copy Themes</span>
+                    <span class="chapter-expand">▼</span>
+                </div>
+                <div class="chapter-submenu">
+                    <div class="subslide" data-slide="13">Key Copy Themes</div>
+                    <div class="subslide" data-slide="14">Why Themes Work</div>
+                </div>
             </div>
-            <div class="chapter" data-chapter="segments">
-                <span class="chapter-number">6</span>Segment Analysis
+
+            <!-- 6. Segment Analysis -->
+            <div class="chapter-group" data-chapter="segments">
+                <div class="chapter" data-chapter="segments">
+                    <span class="chapter-left"><span class="chapter-number">6</span>Segments</span>
+                    <span class="chapter-expand">▼</span>
+                </div>
+                <div class="chapter-submenu">
+                    <div class="subslide" data-slide="15">Current Reality</div>
+                    <div class="subslide" data-slide="16">Segment Overview</div>
+                    <div class="subslide" data-slide="17">SEG01: Corporate Refugees</div>
+                    <div class="subslide" data-slide="18">SEG02: RE Investors</div>
+                    <div class="subslide" data-slide="19">SEG02: Test In Progress</div>
+                    <div class="subslide" data-slide="20">SEG03: Retirees</div>
+                    <div class="subslide" data-slide="21">SEG04: Side Hustlers</div>
+                    <div class="subslide" data-slide="22">SEG05: Career Changers</div>
+                </div>
             </div>
-            <div class="chapter" data-chapter="expansion">
-                <span class="chapter-number">7</span>Expansion Strategy
+
+            <!-- 7. Expansion Strategy -->
+            <div class="chapter-group" data-chapter="expansion">
+                <div class="chapter" data-chapter="expansion">
+                    <span class="chapter-left"><span class="chapter-number">7</span>Expansion</span>
+                    <span class="chapter-expand">▼</span>
+                </div>
+                <div class="chapter-submenu">
+                    <div class="subslide" data-slide="23">Scale Strategy Intro</div>
+                    <div class="subslide" data-slide="24">Opportunities</div>
+                    <div class="subslide" data-slide="25">SEG02 Hook Testing</div>
+                    <div class="subslide" data-slide="26">SEG03 Hook Ideas</div>
+                    <div class="subslide" data-slide="27">SEG04 Hook Ideas</div>
+                    <div class="subslide" data-slide="28">SEG05 Hook Ideas</div>
+                </div>
             </div>
-            <div class="chapter" data-chapter="next">
-                <span class="chapter-number">8</span>Next Steps
+
+            <!-- 8. Next Steps -->
+            <div class="chapter-group" data-chapter="next">
+                <div class="chapter" data-chapter="next">
+                    <span class="chapter-left"><span class="chapter-number">8</span>Next Steps</span>
+                    <span class="chapter-expand">▼</span>
+                </div>
+                <div class="chapter-submenu">
+                    <div class="subslide" data-slide="29">Next Steps</div>
+                    <div class="subslide" data-slide="30">Summary</div>
+                </div>
             </div>
         </nav>
 
@@ -1814,6 +1958,8 @@
     <script>
         const slides = document.querySelectorAll('.slide');
         const chapters = document.querySelectorAll('.chapter');
+        const chapterGroups = document.querySelectorAll('.chapter-group');
+        const subslides = document.querySelectorAll('.subslide');
         const counter = document.querySelector('.slide-counter');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
@@ -1855,6 +2001,23 @@
                 }
             });
 
+            // Update chapter group expansion - expand current, collapse others
+            chapterGroups.forEach(group => {
+                if (group.dataset.chapter === currentChapter) {
+                    group.classList.add('expanded');
+                } else {
+                    group.classList.remove('expanded');
+                }
+            });
+
+            // Update subslide highlighting
+            subslides.forEach(sub => {
+                sub.classList.remove('active');
+                if (parseInt(sub.dataset.slide) === index) {
+                    sub.classList.add('active');
+                }
+            });
+
             // Pause all videos
             document.querySelectorAll('video').forEach(v => v.pause());
 
@@ -1886,14 +2049,35 @@
             }
         });
 
-        // Chapter click navigation
+        // Chapter click navigation (toggle expand/collapse and go to first slide)
         chapters.forEach(chapter => {
-            chapter.addEventListener('click', () => {
+            chapter.addEventListener('click', (e) => {
+                const group = chapter.closest('.chapter-group');
                 const targetChapter = chapter.dataset.chapter;
-                const targetSlide = Array.from(slides).findIndex(s => s.dataset.chapter === targetChapter);
-                if (targetSlide !== -1) {
-                    showSlide(targetSlide);
+
+                // Toggle expansion
+                if (group.classList.contains('expanded')) {
+                    group.classList.remove('expanded');
+                } else {
+                    // Collapse all others and expand this one
+                    chapterGroups.forEach(g => g.classList.remove('expanded'));
+                    group.classList.add('expanded');
+
+                    // Navigate to first slide of this chapter
+                    const targetSlide = Array.from(slides).findIndex(s => s.dataset.chapter === targetChapter);
+                    if (targetSlide !== -1) {
+                        showSlide(targetSlide);
+                    }
                 }
+            });
+        });
+
+        // Subslide click navigation
+        subslides.forEach(sub => {
+            sub.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const targetSlide = parseInt(sub.dataset.slide);
+                showSlide(targetSlide);
             });
         });
 
